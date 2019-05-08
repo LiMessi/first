@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>多级导航菜单_JS</title>
+</head>
+    <style>
+        /*样式重置*/
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul, ol{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        #menu .main-menu-li{
+            float: left;
+            margin-right: 10px;
+        }
+        #menu .main-menu-a{
+            display: block;
+            height: 30px;
+            width: 100px;
+            background: #CCCCCC;
+            line-height: 30px;
+        }
+        #menu .main-menu-li .sub-menu li{
+            height: 25px;
+            border-bottom: 1px dotted #000000;
+            line-height: 25px;
+            background: #eeeeee;
+        }
+        #menu .main-menu-li .sub-menu{
+            display: none;
+        }
+    </style>
+<body>
+    <ul id="menu">
+        <li class="main-menu-li">
+            <a class="main-menu-a" href="#">link1</a>
+            <ul class="sub-menu">
+                <li>
+                    <a href="#">sublink1</a>
+                </li>
+                <li>
+                    <a href="#">sublink2</a>
+                </li>
+                <li>
+                    <a href="#">sublink3</a>
+                </li>
+            </ul>
+        </li>
+        <li class="main-menu-li">
+            <a class="main-menu-a" href="#">link1</a>
+            <ul class="sub-menu">
+                <li>
+                    <a href="#">sublink1</a>
+                </li>
+                <li>
+                    <a href="#">sublink2</a>
+                </li>
+                <li>
+                    <a href="#">sublink3</a>
+                </li>
+            </ul>
+        </li>
+        <li class="main-menu-li">
+            <a class="main-menu-a" href="#">link1</a>
+            <ul class="sub-menu">
+                <li>
+                    <a href="#">sublink1</a>
+                </li>
+                <li>
+                    <a href="#">sublink2</a>
+                </li>
+                <li>
+                    <a href="#">sublink3</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <script>
+        var a = 5;
+        switch (a) {
+            case 5:
+                alert('a=5');
+            case 6:
+                alert('a=6');
+                break;
+            default:
+                alert('a=other');
+        }
+    </script>
+</body>
+</html>
