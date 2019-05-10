@@ -54,7 +54,7 @@
             </ul>
         </li>
         <li class="main-menu-li">
-            <a class="main-menu-a" href="#">link1</a>
+            <a class="main-menu-a" href="#">link2</a>
             <ul class="sub-menu">
                 <li>
                     <a href="#">sublink1</a>
@@ -68,7 +68,7 @@
             </ul>
         </li>
         <li class="main-menu-li">
-            <a class="main-menu-a" href="#">link1</a>
+            <a class="main-menu-a" href="#">link3</a>
             <ul class="sub-menu">
                 <li>
                     <a href="#">sublink1</a>
@@ -83,15 +83,18 @@
         </li>
     </ul>
     <script>
-        var a = 5;
-        switch (a) {
-            case 5:
-                alert('a=5');
-            case 6:
-                alert('a=6');
-                break;
-            default:
-                alert('a=other');
+        var oMenu = document.getElementById("menu");
+        // var aMainMenuLi = oMenu.getElementsByClassName("main-menu-li")
+        //console.log(aMainMenuLi);
+        var aMainMenuLi = oMenu.children;
+        for(var i=0; i<aMainMenuLi.length; i++){
+            aMainMenuLi[i].onmouseover = function(){
+                this.getElementsByTagName("ul")[0].style.display = "block";
+            }
+
+            aMainMenuLi[i].onmouseout = function(){
+                this.getElementsByTagName("ul")[0].style.display = "none";
+            }
         }
     </script>
 </body>
