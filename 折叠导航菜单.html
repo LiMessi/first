@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>折叠导航菜单</title>
+    <style>
+        /*样式重置*/
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul, ol{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        #menu{
+            width: 120px;
+        }
+        #menu .main-menu-h{
+            height: 30px;
+            background: black;
+            color: #ffffff;
+            line-height: 30px;
+            cursor: pointer;
+        }
+        #menu .sub-menu{
+            border: 1px solid black;
+        }
+        #menu .sub-menu{
+            display: none;
+        }
+        #menu .sub-menu li a{
+            display: block;
+            width: 120px;
+        }
+    </style>
+</head>
+<body>
+    <ul id="menu">
+        <li class="main-menu-li">
+            <h3 onselectstart="return false;" class="main-menu-h">管理区</h3>
+            <ul class="sub-menu">
+                <li>
+                    <a href="#">001</a>
+                </li>
+                <li>
+                    <a href="#">002</a>
+                </li>
+                <li>
+                    <a href="#">003</a>
+                </li>
+            </ul>
+        </li>
+        <li class="main-menu-li">
+            <h3 onselectstart="return false;"  class="main-menu-h">交流区</h3>
+            <ul class="sub-menu">
+                <li>
+                    <a href="#">001</a>
+                </li>
+                <li>
+                    <a href="#">002</a>
+                </li>
+                <li>
+                    <a href="#">003</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <script>
+        // 给h3加单击事件
+        // var oMenu = document.getElementById("menu");
+        // var aH3 = oMenu.getElementsByTagName("h3");
+        // var aSubMenu = oMenu.getElementsByTagName("ul");
+        // for(var i =0; i<aH3.length; i++){
+        //     aH3[i].index = i;
+        //     aH3[i].bFlag = false;//定义标志位，false表示合上，true表示打开
+        //     aH3[i].onclick = function () {
+        //         if (this.bFlag ===false ){
+        //             aSubMenu[ this.index ].style.display = "block";
+        //             this.bFlag = true;
+        //         }
+        //         else {
+        //             aSubMenu[ this.index ].style.display = "none";
+        //             this.bFlag = false;
+        //         }
+        //     }
+        // }
+        // 给li加单击事件
+        var oMenu = document.getElementById("menu");
+        var aLi = oMenu.children;
+        for(var i=0; i<aLi.length; i++){
+            aLi[i].index = i;
+            aLi[i].bFlag = false;
+            aLi[i].onclick = function () {
+                if(this.bFlag){
+                    this.getElementsByTagName("ul")[0].style.display = "block";
+                }else {
+                    this.getElementsByTagName("ul")[0].style.display = "none";
+                }
+                this.bFlag = !this.bFlag;
+            }
+        }
+    </script>
+</body>
+</html>
