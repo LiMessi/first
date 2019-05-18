@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>轮播图</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul, ol{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        img{
+            border: 0;
+        }
+        #container{
+            width: 331px;
+            height: 514px;
+            overflow: hidden;
+            margin: 100px auto;
+            position: relative;
+            cursor: pointer;
+        }
+        #nav{
+            overflow: hidden;
+            position: absolute;
+            right: 10px;
+            bottom: 5px;
+        }
+        #nav li{
+            float: left;
+            width: 20px;
+            height: 20px;
+            background: black;
+            color: white;
+            margin-right: 5px;
+            line-height: 20px;
+            text-align: center;
+            cursor: pointer;
+        }
+        #nav li.selected{
+            background: orange;
+            color: black;
+        }
+        div img{
+            display: none;
+        }
+        div img.selected{
+            display: block;
+        }
+        #arrow{
+            position: absolute;
+            left: 10px;
+            bottom: 5px;
+        }
+        #arrow span{
+            float: left;
+            display: block;
+            height: 20px;
+            width: 20px;
+            background: black;
+            color: white;
+            text-align: center;
+            line-height: 20px;
+            margin-right: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <ul id="nav">
+            <li class="selected">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+
+        <div><img src="1.jpg" class="selected"></div>
+        <div><img src="2.jpg"></div>
+        <div><img src="3.jpg"></div>
+        <div><img src="4.jpg"></div>
+        <div id="arrow">
+            <span id="lt">&lt</span>
+            <span id="gt">&gt</span>
+        </div>
+    </div>
+    <script>
+        var oContainer = document.getElementById("container");
+        var aLi = oContainer.getElementsByTagName("li");
+        var aImag = oContainer.getElementsByTagName("img");
+        var aSpan = oContainer.getElementsByTagName("span");
+        var Tag = 0;//表示当前图片的索引
+        for (var i = 0; i <aLi.length ; i++) {
+            aLi[i].index = i;
+            aLi[i].onmouseover = function () {
+                changeImage(this.index);
+                Tag = this.index;
+            }
+        }
+
+        aSpan[0].onclick =  function(){
+            Tag--;
+            changeImage((Tag + aLi.length) % aLi.length);
+        };
+        aSpan[1].onclick = function(){
+            Tag++;
+            changeImage(Tag % aLi.length);
+        };
+
+        function changeImage(idx) {
+            for (var j = 0; j <aLi.length ; j++) {
+                aLi[j].className = '';
+                aImag[j].className = '';
+            }
+            aLi[idx].className = 'selected';
+            aImag[idx].className = 'selected';
+        }
+
+        for (var i = 0; i <aSpan.length; i++) {
+            aSpan[i].onselectstart = function () {
+                return false;
+            }
+        }
+        var timer;
+        function run() {
+            timer = setInterval(function(){
+                aSpan[1].onclick();
+            }, 2000);
+        }
+        run();
+
+        oContainer.onmouseover = function () {
+            clearInterval(timer);
+        };
+        oContainer.onmouseout = function(){
+            run();
+        }
+    </script>
+
+</body>
+</html>
