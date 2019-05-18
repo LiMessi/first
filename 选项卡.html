@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>选项卡</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul, ol{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        img{
+            border: 0;
+        }
+        #container{
+            width: 400px;
+            margin: 100px auto;
+        }
+        #nav{
+            overflow: hidden;
+        }
+        #nav li{
+            float: left;
+            height: 30px;
+            width: 100px;
+            background: #CCCCCC;
+            margin-right: 5px;
+            line-height: 30px;
+            cursor: pointer;
+        }
+        #nav li.selected{
+            background: #000000;
+            color: #ffffff;
+        }
+        #container div{
+            width: 400px;
+            height: 200px;
+            background: #eeeeee;
+            display: none;
+        }
+        #container div.selected{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <ul id = "nav">
+            <li class="selected">HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+        </ul>
+        <div class="selected">这是HTML</div>
+        <div>这是CSS</div>
+        <div>这是JavaScript</div>
+    </div>
+
+    <script>
+        var oContainer = document.getElementById("container");
+        var aLi = oContainer.getElementsByTagName("li");
+        var aDiv = oContainer.getElementsByTagName("div");
+        for (var i = 0; i < aLi.length; i++) {
+            aLi[i].index = i;
+            aLi[i].onmouseover = function () {
+                for (var j = 0; j < aLi.length; j++) {
+                    aLi[j].className = '';
+                    aDiv[j].className = '';
+                }
+                this.className = 'selected';
+                aDiv[this.index].className = 'selected';
+            }
+        }
+    </script>
+
+
+
+
+</body>
+</html>
