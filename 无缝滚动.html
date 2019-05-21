@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>无缝滚动</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul, ol{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        img{
+            border: 0;
+        }
+        #container{
+            width: 270px;
+            height: 200px;
+            border: 1px solid #000000;
+            margin: 100px auto;
+            overflow: hidden;
+            position: relative;
+        }
+        #content{
+            width: 360px;
+            height: 80px;
+            position: absolute;
+        }
+        #content li{
+            height: 80px;
+            width: 80px;
+            background: #000000;
+            color: #ffffff;
+            float: left;
+            margin-right: 10px;
+            text-align: center;
+            line-height: 80px;
+            font-size: 20px;
+        }
+        #arrows{
+            height: 30px;
+            width: 170px;
+            position: absolute;
+            left: 50%;
+            margin-left: -85px;
+            top: 100px;
+            /*margin: 40px auto;*/
+        }
+        #prev, #next{
+            float: left;
+            height: 30px;
+            width: 80px;
+            background: #CCCCCC;
+            margin-right: 5px;
+            text-align: center;
+            line-height: 30px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <ul id="content">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+        <div id="arrows">
+            <span id="prev">&lt&lt;</span>
+            <span id="next">&gt&gt;</span>
+        </div>
+    </div>
+    <script>
+        var oContent = document.getElementById("content");
+        var aLi = oContent.getElementsByTagName("li");
+        var oPrev = document.getElementById("prev");
+        var oNext = document.getElementById("next");
+        oContent.innerHTML += oContent.innerHTML;
+        oContent.style.width = oContent.offsetWidth * 2 + 'px';
+        var speed = -10;
+        setInterval(function () {
+            oContent.style.left = oContent.offsetLeft + speed + 'px';
+            if(oContent.offsetLeft <= -oContent.offsetWidth * 0.5){
+                oContent.style.left = '0px';
+            }
+            if(oContent.offsetLeft > 0){
+                oContent.style.left = -oContent.offsetWidth * 0.5 + 'px';
+            }
+        },200);
+        oPrev.onmouseover = oNext.onmouseover = function(){
+            if(this == oPrev){
+                speed = -10;
+            }else{
+                speed = 10;
+            }
+        }
+    </script>
+</body>
+</html>
