@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>无缝滚动2</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul, ol{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        img{
+            border: 0;
+        }
+        body{
+            width: 2000px;
+        }
+        #container{
+            width: 331px;
+            height: 514px;
+            overflow: hidden;
+            position: relative;
+            margin: 100px auto;
+            position: relative;
+            cursor: pointer;
+        }
+        #content{
+            width: 1324px;
+            height: 514px;
+            position: absolute;
+        }
+        #content img{
+            float: left;
+        }
+        #nav{
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+        }
+        #nav li{
+            float: left;
+            width: 20px;
+            height: 20px;
+            background: #000000;
+            color: #ffffff;
+            margin-right: 5px;
+            text-align: center;
+            line-height: 20px;
+            cursor: pointer;
+        }
+        #nav li.selected{
+            background: orange;
+        }
+        #arrows{
+            position: absolute;
+            left: 10px;
+            bottom: 10px;
+        }
+        #prev, #next{
+            float: left;
+            margin-right: 5px;
+            height: 20px;
+            width: 20px;
+            background: #000000;
+            text-align: center;
+            line-height: 20px;
+            color: #ffffff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="content">
+            <img src="1.jpg">
+            <img src="2.jpg">
+            <img src="3.jpg">
+            <img src="4.jpg">
+        </div>
+        <ul id="nav">
+            <li class="selected">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+        <div id="arrows">
+            <span id="prev">&lt;</span>
+            <span id="next">&gt;</span>
+        </div>
+    </div>
+
+    <script src="jslib.js"></script>
+    <script>
+        var oContainer = document.getElementById('container');
+        var oContent = document.getElementById("content");
+        var aImg = oContent.getElementsByTagName("img");
+        var oNav = document.getElementById("nav");
+        var aLi = oNav.getElementsByTagName("li");
+        var oPrev = document.getElementById("prev");
+        var oNext = document.getElementById("next");
+        var imgWidth = aImg[0].offsetWidth;
+        var Tag = 0;//表示当前图片索引值
+        var speed = -imgWidth;
+
+        oContent.appendChild(aImg[0].cloneNode());
+        oContent.style.width = imgWidth * aImg.length + 'px';
+
+        for (var i = 0; i < aLi.length; i++) {
+            aLi[i].index = i;
+            aLi[i].onmouseover = function () {
+                changeImg(this.index);
+            }
+        }
+
+        oPrev.onclick = oNext.onclick = function () {
+            if(this == oPrev){
+                Tag--;
+                if(Tag<0){
+                    oContent.style.left = - (aImg.length-1) * imgWidth + 'px';
+                    Tag = aImg.length-2;
+                }
+                changeImg(Tag);
+            }else{
+                Tag++;
+                if(Tag == aImg.length){
+                    oContent.style.left = '0px';
+                    Tag = 1;
+
+                }
+                changeImg(Tag);
+            }
+        };
+
+        function changeImg(idx) {
+            for (var j = 0; j < aLi.length; j++) {
+                aLi[j].className = '';
+            }
+            Tag = idx;
+            aLi[idx==aLi.length?0:idx].className = 'selected';
+            animate(oContent, {left: -idx * imgWidth});
+        }
+
+        var timer;
+
+        function run(){
+            timer = setInterval(function(){
+                oNext.onclick();
+            },1000);
+        };
+
+        run();
+
+        oContainer.onmouseover = function () {
+            clearInterval(timer);
+        };
+        oContainer.onmouseout = function () {
+            run();
+        };
+
+    </script>
+</body>
+</html>
