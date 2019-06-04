@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义滚动条</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul, ol{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        img{
+            border: 0;
+        }
+        #container{
+            height: 200px;
+            width: 300px;
+            background: #CCCCCC;
+            position: relative;
+            overflow: hidden;
+        }
+        #content{
+            height: 200px;
+            width: 280px;
+            height: 350px;
+            background: #eeeeee;
+            position: absolute;
+        }
+        #strip{
+            height: 200px;
+            width: 20px;
+            /*background: #ffffff;*/
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+        #drag{
+            height: 40px;
+            width: 20px;
+            background: red;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="content">
+            hhhhhhhhhhhhhhhhhhhhhhhhhhhhhh1
+            hhhhhhhhhhhhhhhhhhhhhhhhhhhhhh2
+            hhhhhhhhhhhhhhhhhhhhhhhhhhhhhh3
+            hhhhhhhhhhhhhhhhhhhhhhhhhhhhhh4
+            hhhhhhhhhhhhhhhhhhhhhhhhhhhhhh5
+            hhhhhhhhhhhhhhhhhhhhhhhhhhhhhh6
+            hhhhhhhhhhhhhhhhhhhhhhhhhhhhhh7
+            hhhhhhhhhhhhhhhhhhhhhhhhhhhhhh8
+            hhhhhhhhhhhhhhhhhhhhhhhhhhhhhh9
+            hhhhhhhhhhhhhhhhhhhhhhhhhhhhhh0
+            hhhhhhhhhhhhhhhhhhhhhhhhhhhhhh1
+            hhhhhhhhhhhhhhhhhhhhhhhhhhhhhh2
+            hhhhhhhhhhhhhhhhhhhhhhhhhhhhhh3
+            hhhhhhhhhhhhhhhhhhhhhhhhhhhhhh4
+            hhhhhhhhhhhhhhhhhhhhhhhhhhhhhh5
+            hhhhhhhhhhhhhhhhhhhhhhhhhhhhhh6
+        </div>
+        <div id="strip">
+            <div id="drag"></div>
+        </div>
+    </div>
+
+    <script>
+        var oContainer = document.getElementById('container');
+        var oContent = document.getElementById('content');
+        var oDrag = document.getElementById('drag');
+        var distX = 0;
+        var distY = 0;
+        var nPecentage = 0;
+        oDrag.onmousedown = function (e) {
+            e = e || window.event;
+            distY = e.clientY - oContainer.offsetTop - oDrag.offsetTop;
+            document.onmousemove = function(e){
+                e = e || window.event;
+                oDrag.style.top = e.clientY - oContainer.offsetTop - distY + 'px';
+                 if(e.clientY - oContainer.offsetTop - distY <= 0){
+                     oDrag.style.top = '0px';
+                 }
+                 if(e.clientY - oContainer.offsetTop - distY >= oContainer.offsetHeight - oDrag.offsetHeight){
+                     oDrag.style.top = oContainer.offsetHeight - oDrag.offsetHeight + 'px';
+                 }
+
+                nPecentage = oDrag.offsetTop/(oContainer.offsetHeight - oDrag.offsetHeight);
+
+                oContent.style.top = - (oContent.offsetHeight - oContainer.offsetHeight) * nPecentage + 'px';
+
+                 return false;
+            }
+
+        };
+        document.onmouseup = function () {
+            document.onmousemove = null;
+        }
+
+
+
+    </script>
+
+
+</body>
+</html>

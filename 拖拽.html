@@ -21,12 +21,12 @@
         var oDiv = document.getElementById("div1");
         var idistX = idistY = 0;
         oDiv.onmousedown = function(e){
-            e = e|| windows.event;
+            e = e|| window.event;
             idistX = e.clientX - oDiv.offsetLeft;
             idistY =  e.clientY - oDiv.offsetTop;
             // console.log(idistX + '-' + idistY);
             document.onmousemove = function(e){
-                e = e|| windows.event;
+                e = e|| window.event;
                 oDiv.style.left = e.clientX - idistX + 'px';
                 oDiv.style.top = e.clientY - idistY + 'px';
                 if(oDiv.offsetLeft < 20){
