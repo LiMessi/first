@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>放大镜</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul, ol{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        img{
+            border: 0;
+        }
+        #small-box{
+            float: left;
+            height: 170px;
+            width: 170px;
+            border: 1px solid black;
+            position: relative;
+        }
+        #drag{
+            background: red;
+            width: 106px;
+            height: 106px;
+            opacity: 0.3;
+            filter: alpha(opacity = 30);
+            position: absolute;
+            left: 0;
+            top: 0;
+            display: none;
+        }
+        #big-box{
+            float: left;
+            margin-left: 10px;
+            width: 250px;
+            height: 250px;
+            border: 1px solid red;
+            overflow: hidden;
+            display: none;
+            position: relative;
+        }
+        #big-pic{
+            position: absolute;
+        }
+        #mask{
+            height: 170px;
+            width: 170px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #CCCCCC;
+            opacity: 0;
+            filter: alpha(opacity = 0);
+        }
+
+
+    </style>
+</head>
+<body>
+    <div id="small-box">
+        <img src="6.jpg" alt="" id="small-pic">
+        <div id="drag">
+        </div>
+        <div id="mask"></div>
+    </div>
+    <div id="big-box">
+        <img src="5.jpg" alt="" id="big-pic">
+    </div>
+
+    <script>
+        var oSmallBox = document.getElementById("small-box");
+        var oSmallPic = document.getElementById("small-pic");
+        var oDrag = document.getElementById("drag");
+        var oBigBox = document.getElementById("big-box");
+        var oBigPic = document.getElementById('big-pic');
+
+
+        var distX = 0;
+        var distY = 0;
+
+        oSmallBox.onmouseover = function(){
+            oDrag.style.display = "block";
+        };
+        oSmallBox.onmousemove = function (e) {
+            e = e || window.event;
+            distX = e.clientX - oDrag.offsetWidth/2;
+            distY = e.clientY - oDrag.offsetHeight/2;
+            if(distX <= 0){
+                distX = 0;
+            };
+            if(distX >= oSmallPic.offsetWidth - oDrag.offsetWidth){
+                distX = oSmallPic.offsetWidth - oDrag.offsetWidth;
+            };
+            if(distY <= 0){
+                distY = 0;
+            };
+            if(distY >= oSmallPic.offsetHeight - oDrag.offsetHeight){
+                distY = oSmallPic.offsetHeight - oDrag.offsetHeight;
+            };
+            oDrag.style.left = distX + 'px';
+            oDrag.style.top = distY + 'px';
+
+
+            oBigBox.style.display = "block";
+
+            oBigPic.style.left = -(oBigPic.offsetWidth - oBigBox.offsetWidth) * oDrag.offsetLeft/(oSmallPic.offsetWidth - oDrag.offsetWidth) + 'px';
+            oBigPic.style.top = -(oBigPic.offsetHeight - oBigBox.offsetHeight) * oDrag.offsetTop/(oSmallPic.offsetHeight - oDrag.offsetHeight) + 'px';
+
+
+
+        };
+        oSmallBox.onmouseout = function () {
+            oDrag.style.display = "none";
+            oBigBox.style.display = "none";
+
+        };
+
+
+    </script>
+</body>
+</html>
