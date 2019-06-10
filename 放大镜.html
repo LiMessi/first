@@ -48,6 +48,7 @@
         #big-pic{
             position: absolute;
         }
+        /*解决IE兼容性问题*/
         #mask{
             height: 170px;
             width: 170px;
@@ -79,11 +80,8 @@
         var oDrag = document.getElementById("drag");
         var oBigBox = document.getElementById("big-box");
         var oBigPic = document.getElementById('big-pic');
-
-
         var distX = 0;
         var distY = 0;
-
         oSmallBox.onmouseover = function(){
             oDrag.style.display = "block";
         };
@@ -105,23 +103,14 @@
             };
             oDrag.style.left = distX + 'px';
             oDrag.style.top = distY + 'px';
-
-
             oBigBox.style.display = "block";
-
             oBigPic.style.left = -(oBigPic.offsetWidth - oBigBox.offsetWidth) * oDrag.offsetLeft/(oSmallPic.offsetWidth - oDrag.offsetWidth) + 'px';
             oBigPic.style.top = -(oBigPic.offsetHeight - oBigBox.offsetHeight) * oDrag.offsetTop/(oSmallPic.offsetHeight - oDrag.offsetHeight) + 'px';
-
-
-
         };
         oSmallBox.onmouseout = function () {
             oDrag.style.display = "none";
             oBigBox.style.display = "none";
-
         };
-
-
     </script>
 </body>
 </html>
