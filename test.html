@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul, ol{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        img{
+            border: 0;
+        }
+        #div1{
+            height: 200px;
+            width: 300px;
+            background: #CCCCCC;
+            opacity: 0.4;
+            margin-left: 10px;
+        }
+        /*#div1 img{*/
+        /*    height: 150px;*/
+        /*    width: 250px;*/
+        /*    margin-top: 100px;*/
+        /*    !*padding: 100px;*!*/
+        /*}*/
+        #div2{
+            height: 50px;
+            width: 50px;
+            background: red;
+            margin-top: 30px;
+            margin-left: 30px;
+        }
+        /*#span1{*/
+        /*    background: orange;*/
+        /*    padding: 10px;*/
+        /*}*/
+        /*#span2{*/
+        /*    background: orange;*/
+        /*    padding-top: 10px;*/
+        /*}*/
+    </style>
+</head>
+<body>
+    <div id="div1">
+<!--        <img src="pic1.jpg" alt="">-->
+        <div id="div2"></div>
+    </div>
+<!--    <span id="span1">1234567890-</span>-->
+<!--    <span id="span2">qwertyuioppplkjhgfdsazxcvbnm,</span>-->
+
+    <script>
+        var oDIv1 = document.getElementById('div1');
+        console.log(oDIv1.offsetLeft);
+        console.log(oDIv1.offsetTop);
+
+    </script>
+
+
+
+</body>
+</html>
