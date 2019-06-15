@@ -33,12 +33,12 @@
 
     <script>
         oDiv = document.getElementById('div1');
-        var distX = 0;
-        var distY = 0;
+        // var distX = 0;
+        // var distY = 0;
         oDiv.onmousedown = function (e) {
             e = e || window.event;
-            distX = e.clientX - oDiv.offsetLeft;
-            distY = e.clientY - oDiv.offsetTop;
+            var distX = e.clientX - oDiv.offsetLeft;
+            var distY = e.clientY - oDiv.offsetTop;
 
             document.onmousemove = function (e) {
                 e = e || window.event;
@@ -58,7 +58,7 @@
                     oDiv.style.top = document.documentElement.clientHeight - oDiv.offsetHeight + 'px';
                 }
 
-                return false;
+                // return false;
             }
 
         };
