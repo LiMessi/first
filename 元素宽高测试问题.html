@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>元素宽高问题测试</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul, ol{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        img{
+            border: 0;
+        }
+        /*测试1：块级元素宽高问题*/
+        /*测试1.1：块级元素宽高问题[不设置浮动、定位的情况下]
+        /*这里所说的宽高是CSS里的width和height
+        *1.可设置宽高，宽高为设定值
+        *2.不设置宽高，宽默认为auto，默认宽度为父元素的宽度-自身margin-自身padding-自身border,高由其子元素撑起，若无子元素，高为0
+        *3.设置宽为100%，不设置高，表示元素宽度等于父元素的宽度，高由其子元素撑起，若无子元素，高为0
+        */
+        /*测试1.2：块级元素宽高问题，设置浮动
+        *1.可设置宽高
+        *2.不设置宽高，宽高为其子元素宽高，若无子元素，其宽高为0
+        *3.设置宽为100%，不设置高，表示元素宽度等于父元素的宽度，高由其子元素撑起，若无子元素，高为0
+        */
+        /*测试1.3：块级元素宽高问题，设置绝对定位
+        *1.可设置宽高，宽高为设定值
+        *2.不设置宽高，宽高为其子元素宽高，若无子元素，其宽高为0
+        *3.设置宽为100%，不设置高，表示元素宽度等于父元素的宽度，高由其子元素撑起，若无子元素，高为0
+        */
+        /*测试1.4：子元素的margin/padding/border，对父元素宽高的影响
+        *记住一句话：子元素的所有东西，包括margin/padding/border/content都在父元素的content中，
+        *父元素的宽度和高度要由子元素的margin/padding/border/content一起决定
+        */
+
+
+        /*测试2：*/
+
+
+
+
+        /*#div1{*/
+        /*    width: 100%;*/
+        /*    !*float: left;*!*/
+        /*    position: absolute;*/
+        /*    margin-left: 100px;*/
+        /*    padding-left: 50px;*/
+        /*    border-left: 50px solid #ff0000;*/
+        /*    background: #CCCCCC;*/
+        /*}*/
+        /*#div2{*/
+        /*    height: 200px;*/
+        /*    width: 200px;*/
+        /*    background: #ff0000;*/
+        /*}*/
+
+        #div1{
+            width: auto;
+            background: #CCCCCC;
+            overflow: hidden;
+        }
+
+        #div2{
+            /*padding-top: 100px;*/
+            margin-top: 100px;
+            height: 200px;
+            width: 200px;
+            background: red;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<div id="div1">
+    <div id="div2"></div>
+</div>
+
+<script>
+    document.write(document.body.clientWidth || document.documentElement.clientWidth);
+    var oDiv1 = document.getElementById('div1');
+    document.write('<br>' + oDiv1.offsetWidth);
+</script>
+
+</body>
+</html>
