@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>父元素塌陷问题</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul, ol{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        img{
+            border: 0;
+        }
+        #father{
+            /*height: 400px;*/
+            /*width: 400px;*/
+            background: #CCCCCC;
+
+            /*演示1：父子div,子div设置float,父div塌陷问题*/
+            /*1.设置父元素浮动;2.设置父元素定位[绝对/固定];
+            3.将父元素宽高写定;4.设置父元素溢出隐藏*/
+            /*float: left;*/
+            /*position: absolute;*/
+            /*position: fixed;*/
+            /*height: 200px;width: 200px;*/
+            overflow: hidden;
+
+            /*演示：父子div,子div设置margin-top,父div也一块下移问题*/
+            /*1.设置父元素浮动;2.设置父元素/子元素定位[绝对/固定];
+            3.设置父元素padding-top;4.设置父元素boder-top;5.设置父元素溢出隐藏;/
+            /*float: left;*/
+            /*position: absolute;*/
+            /*position: fixed;*/
+            /*padding-top: 10px;*/
+            /*border-top: 1px solid red;*/
+            /*overflow: hidden;*/
+        }
+        #child{
+            height: 200px;
+            width: 200px;
+            background: #ff0000;
+            float: left;
+            /*margin-top: 100px;*/
+            /*position: absolute;*/
+            /*position: fixed;*/
+        }
+    </style>
+</head>
+<body>
+<div id="father">
+    <div id="child"></div>
+</div>
+
+</body>
+</html>
