@@ -29,10 +29,11 @@
         *2.不设置宽高，宽高为其子元素宽高，若无子元素，其宽高为0
         *3.设置宽为100%，不设置高，表示元素宽度等于父元素的宽度，高由其子元素撑起，若无子元素，高为0
         */
-        /*测试1.3：块级元素宽高问题，设置绝对定位
+        /*测试1.3：块级元素宽高问题，设置绝对定位/固定定位/相对定位
         *1.可设置宽高，宽高为设定值
         *2.不设置宽高，宽高为其子元素宽高，若无子元素，其宽高为0
         *3.设置宽为100%，不设置高，表示元素宽度等于父元素的宽度，高由其子元素撑起，若无子元素，高为0
+        *4.注意只是相对定位原始空间不释放
         */
         /*测试1.4：子元素的margin/padding/border，对父元素宽高的影响
         *记住一句话：子元素的所有东西，包括margin/padding/border/content都在父元素的content中，
@@ -40,15 +41,10 @@
         */
 
 
-        /*测试2：*/
-
-
-
-
         /*#div1{*/
         /*    width: 100%;*/
         /*    !*float: left;*!*/
-        /*    position: absolute;*/
+        /*    position: relative;*/
         /*    margin-left: 100px;*/
         /*    padding-left: 50px;*/
         /*    border-left: 50px solid #ff0000;*/
@@ -60,34 +56,67 @@
         /*    background: #ff0000;*/
         /*}*/
 
-        #div1{
-            width: auto;
-            background: #CCCCCC;
-            overflow: hidden;
-        }
+        /*#div1{*/
+        /*    width: auto;*/
+        /*    background: #CCCCCC;*/
+        /*    overflow: hidden;*/
+        /*}*/
 
-        #div2{
-            /*padding-top: 100px;*/
-            margin-top: 100px;
+        /*#div2{*/
+        /*    !*padding-top: 100px;*!*/
+        /*    margin-top: 100px;*/
+        /*    height: 200px;*/
+        /*    width: 200px;*/
+        /*    background: red;*/
+        /*}*/
+
+        /*测试2：行级元素宽高问题*/
+        /*测试2.1：行级元素宽高问题[不设置浮动、定位的情况下]
+        *不可设置宽和高，宽高由里边的内容撑起
+        /*测试2.2：行级元素宽高问题[设置浮动]
+        *可设置宽和高
+        /*测试2.3：行级元素宽高问题[设置绝对定位/固定定位],
+        *可设置宽和高
+        /*测试2.4：行级元素宽高问题[设置相对定位],
+        *不可设置宽和高，宽高由内容撑起
+        */
+        #span1{
+            /*float: left;*/
+            /*position: absolute;*/
+            /*left: 50px;*/
+            /*top: 50px;*/
             height: 200px;
             width: 200px;
-            background: red;
+            /*text-align: center;*/
+            /*line-height: 200px;*/
+            background: #eeeeee;
         }
-
+        /*测试3：line-block元素宽高问题[以img为例]
+        *3.1：line-block元素宽高问题[不设置浮动、定位的情况下]
+        *可设置宽高
+        *3.2：line-block元素宽高问题[设置浮动、定位的情况下]
+        *可设置宽高
+        */
+        #img1{
+            height: 300px;
+            width: 450px;
+        }
 
     </style>
 </head>
 <body>
 
-    <div id="div1">
-        <div id="div2"></div>
-    </div>
+<div id="div1">
+    <div id="div2"></div>
+</div>
+<span id="span1">行级元素</span>
+<img  id="img1" src="pic1.jpg" alt="">
 
-    <script>
-        document.write(document.body.clientWidth || document.documentElement.clientWidth);
-        var oDiv1 = document.getElementById('div1');
-        document.write('<br>' + oDiv1.offsetWidth);
-    </script>
+<script>
+    // document.write(document.body.clientWidth || document.documentElement.clientWidth);
+    // var oDiv1 = document.getElementById('div1');
+    // document.write('<br>' + oDiv1.offsetWidth);
+</script>
 
 </body>
 </html>
